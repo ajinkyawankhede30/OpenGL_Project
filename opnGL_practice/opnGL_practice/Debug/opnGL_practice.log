@@ -1,0 +1,36 @@
+﻿  Vertex_Arrays_05.cpp
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp__glClear@4 referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp__glDrawElements@16 referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp__glGetError@0 referenced in function "void __cdecl GLClearError(void)" (?GLClearError@@YAXXZ)
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp__glGetString@4 referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp__glewInit@0 referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol _glfwInit referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol _glfwTerminate referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol _glfwWindowHint referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol _glfwCreateWindow referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol _glfwWindowShouldClose referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol _glfwPollEvents referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol _glfwMakeContextCurrent referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol _glfwSwapBuffers referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol _glfwSwapInterval referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewBindBuffer referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewBufferData referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewGenBuffers referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewAttachShader referenced in function "int __cdecl CreateShader(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?CreateShader@@YAHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z)
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewCompileShader referenced in function "int __cdecl CompileShader(unsigned int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?CompileShader@@YAHIABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewCreateProgram referenced in function "int __cdecl CreateShader(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?CreateShader@@YAHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z)
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewCreateShader referenced in function "int __cdecl CompileShader(unsigned int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?CompileShader@@YAHIABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewDeleteShader referenced in function "int __cdecl CompileShader(unsigned int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?CompileShader@@YAHIABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewEnableVertexAttribArray referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewGetShaderInfoLog referenced in function "int __cdecl CompileShader(unsigned int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?CompileShader@@YAHIABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewGetShaderiv referenced in function "int __cdecl CompileShader(unsigned int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?CompileShader@@YAHIABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewGetUniformLocation referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewLinkProgram referenced in function "int __cdecl CreateShader(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?CreateShader@@YAHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z)
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewShaderSource referenced in function "int __cdecl CompileShader(unsigned int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?CompileShader@@YAHIABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewUniform4f referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewUseProgram referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewValidateProgram referenced in function "int __cdecl CreateShader(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?CreateShader@@YAHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z)
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewVertexAttribPointer referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewBindVertexArray referenced in function _main
+Vertex_Arrays_05.obj : error LNK2019: unresolved external symbol __imp____glewGenVertexArrays referenced in function _main
+D:\openGL\My_Projects\opnGL_practice\Debug\opnGL_practice.exe : fatal error LNK1120: 34 unresolved externals
