@@ -137,10 +137,10 @@ int main()
 
 	float positions[] =
 	{	//position	
-		-0.5f, -0.5f, //0th index
-		 0.5,  -0.5f, //1 
-		 0.5f, 0.5f,  //2
-		 -0.5f, 0.5f  //3rd index
+		-0.5f, -0.5f, 1.0f, 0.0f, 0.0f,//0th index
+		 0.5,  -0.5f, 0.0f, 1.0f, 0.0f,//1 
+		 0.5f, 0.5f,  0.0f, 0.0f, 1.0f,//2
+		 -0.5f, 0.5f, 0.0f, 1.0f, 0.0f//3rd index
 	};
 
 	unsigned int indices[] =
@@ -156,10 +156,15 @@ int main()
 	unsigned int buffer;
 	glGenBuffers(1, &buffer);
 	glBindBuffer(GL_ARRAY_BUFFER, buffer);
-	glBufferData(GL_ARRAY_BUFFER, 4 * 2 * sizeof(float), positions, GL_STATIC_DRAW);
-	glEnableVertexAttribArray(0);
+	glBufferData(GL_ARRAY_BUFFER, 4 * 5 * sizeof(float), positions, GL_STATIC_DRAW);
 
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+	//enable vertex/position attribute
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+
+	//enable color attributes
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(GL_FLOAT)));
 
 	unsigned int ibo;
 	glGenBuffers(1, &ibo);
@@ -170,19 +175,22 @@ int main()
 		"#version 330 core\n"
 		"\n"
 		"layout(location = 0) in vec4 positions;\n"
+		"layout(location = 1) in vec3 vertex_colors;\n"
+		"out vec3 out_colors;\n"
 		"void main()\n"
 		"{\n"
 			"gl_Position = positions;\n"
+			"out_colors = vertex_colors;\n"
 		"}\n";
 
 	std::string fragment_shader =
 		"#version 330 core\n"
 		"\n"
-		" out vec4 color;\n"
-		"uniform vec4 uColor;\n"
+		"out vec4 color;\n"
+		"in vec3 out_colors;\n"
 		"void main()\n"
 		"{\n"
-			"color = uColor;\n"
+			"color = vec4(out_colors,1.0f);\n"
 		"}\n";
 
 	unsigned int vs = glCreateShader(GL_VERTEX_SHADER);
@@ -212,7 +220,6 @@ int main()
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-	float greenval = 0.0f;
 	while (!glfwWindowShouldClose(window))
 	{
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -220,20 +227,18 @@ int main()
 
 		glUseProgram(program);
 
-		if (greenval > 1.0f)
-			greenval = 0.0f;
-		int vertexColorLocation = glGetUniformLocation(program, "uColor");
-		glUniform4f(vertexColorLocation, 0.0f, greenval, 0.0f, 1.0f);
-
 		glBindVertexArray(vao);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
-		greenval += 0.002f;
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
+
+	glDeleteVertexArrays(1, &vao);
+	glDeleteBuffers(1, &buffer);
+	glDeleteProgram(program);
 
 	glfwTerminate();
 	return 0;

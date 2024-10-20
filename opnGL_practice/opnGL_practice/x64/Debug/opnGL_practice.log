@@ -1,3 +1,2 @@
 ﻿  Application.cpp
-D:\openGL\My_Projects\opnGL_practice\opnGL_practice\src\Textures\Application.cpp(223,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   opnGL_practice.vcxproj -> D:\openGL\My_Projects\opnGL_practice\x64\Debug\opnGL_practice.exe
