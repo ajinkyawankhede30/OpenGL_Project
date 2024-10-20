@@ -136,7 +136,7 @@ int main()
 	std::cout << glGetString(GL_VERSION) << "\n";
 
 	float positions[] =
-	{
+	{	//position	
 		-0.5f, -0.5f, //0th index
 		 0.5,  -0.5f, //1 
 		 0.5f, 0.5f,  //2
@@ -179,9 +179,10 @@ int main()
 		"#version 330 core\n"
 		"\n"
 		" out vec4 color;\n"
+		"uniform vec4 uColor;\n"
 		"void main()\n"
 		"{\n"
-			"color = vec4(0.5f,0.25f,1.0f,1.0f);\n"
+			"color = uColor;\n"
 		"}\n";
 
 	unsigned int vs = glCreateShader(GL_VERTEX_SHADER);
@@ -211,6 +212,7 @@ int main()
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
+	float greenval = 0.0f;
 	while (!glfwWindowShouldClose(window))
 	{
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -218,11 +220,17 @@ int main()
 
 		glUseProgram(program);
 
+		if (greenval > 1.0f)
+			greenval = 0.0f;
+		int vertexColorLocation = glGetUniformLocation(program, "uColor");
+		glUniform4f(vertexColorLocation, 0.0f, greenval, 0.0f, 1.0f);
+
 		glBindVertexArray(vao);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
+		greenval += 0.002f;
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}

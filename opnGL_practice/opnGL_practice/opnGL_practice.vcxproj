@@ -19,10 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ReadShader.cpp" />
     <ClCompile Include="src\stb_image\stb_image.cpp" />
     <ClCompile Include="src\Textures\Application.cpp" />
-    <ClCompile Include="src\Textures\Textures.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hdr\ReadShader.h" />
