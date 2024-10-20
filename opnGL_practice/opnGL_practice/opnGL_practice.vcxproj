@@ -19,15 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ReadShader.cpp" />
     <ClCompile Include="src\stb_image\stb_image.cpp" />
-    <ClCompile Include="src\Textures\Application.cpp" />
-    <ClCompile Include="src\Textures\Textures.cpp" />
+    <ClCompile Include="src\Two_triangles_03.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hdr\ReadShader.h" />
     <ClInclude Include="hdr\Textures.h" />
     <ClInclude Include="src\stb_image\stb_image.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\Basic_uniform.shader" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
