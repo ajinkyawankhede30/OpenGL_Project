@@ -4,6 +4,7 @@
 #include <sstream>
 #include "GL/glew.h"
 #include "glfw3.h"
+#include "Shaders.h"
 
 
 #define ASSERT(x) if(!x) __debugbreak();
@@ -66,43 +67,6 @@ static int CreateShader(const std::string& vertexShader, const std::string& frag
 	glDeleteShader(fs);
 
 	return program;
-}
-
-struct ShaderProgramSource
-{
-	std::string VertexShader;
-	std::string FragmentShader;
-};
-
-static ShaderProgramSource ParseShader(const std::string& filePath)
-{
-	enum class ShaderType
-	{
-		NONE = -1,
-		VERTEX = 0,
-		FRAGMENT = 1,
-	};
-
-	std::fstream read(filePath);
-	std::string line;
-	ShaderType type = ShaderType::NONE;
-	std::stringstream ss[2];
-	while (std::getline(read, line))
-	{
-		if (line.find("#shader") != std::string::npos)
-		{
-			if (line.find("vertex") != std::string::npos)
-				type = ShaderType::VERTEX;
-			else if (line.find("fragment") != std::string::npos)
-				type = ShaderType::FRAGMENT;
-		}
-		else
-		{
-			ss[(int)type] << line << "\n";
-		}
-	}
-
-	return { ss[0].str(), ss[1].str() };
 }
 
 
@@ -171,6 +135,9 @@ int main()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), indices, GL_STATIC_DRAW);
 
+	Shaders myshader("D:\\openGL\\My_Projects\\opnGL_practice\\opnGL_practice\\src\\Shader_main.txt");
+	myshader.Bind();
+	/*
 	std::string vertex_shader =
 		"#version 330 core\n"
 		"\n"
@@ -214,9 +181,11 @@ int main()
 	glDeleteShader(fs);
 
 	glUseProgram(program);
+	*/
 
 	glBindVertexArray(0);
-	glUseProgram(0);
+	//glUseProgram(0);
+	myshader.UnBind();
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
@@ -225,7 +194,8 @@ int main()
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glUseProgram(program);
+		myshader.Bind();
+		//glUseProgram(program);
 
 		glBindVertexArray(vao);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
@@ -238,7 +208,7 @@ int main()
 
 	glDeleteVertexArrays(1, &vao);
 	glDeleteBuffers(1, &buffer);
-	glDeleteProgram(program);
+	//glDeleteProgram(program);
 
 	glfwTerminate();
 	return 0;

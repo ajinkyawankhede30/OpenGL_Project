@@ -29,6 +29,9 @@
     <ClInclude Include="hdr\Textures.h" />
     <ClInclude Include="src\stb_image\stb_image.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\Shader_main.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
