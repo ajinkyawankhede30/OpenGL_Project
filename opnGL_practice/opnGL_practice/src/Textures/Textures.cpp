@@ -10,19 +10,20 @@ Textures::Textures(const std::string& filename)
 	 m_imgPath(filename)
 {
 	stbi_set_flip_vertically_on_load(1);
-	m_imgBuffer = stbi_load(filename.c_str(), &m_width, &m_width, &m_BPP, 0);
+	m_imgBuffer = stbi_load(filename.c_str(), &m_width, &m_height, &m_BPP, 0);
 
 	glGenTextures(1, &m_rendererID);
 	glBindTexture(GL_TEXTURE_2D, m_rendererID);
 
-	glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
 	if (m_imgBuffer)
 	{
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_width, m_height, 0, GL_RGB ,GL_UNSIGNED_BYTE, (const void*)m_imgBuffer);
+		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 	else
 	{

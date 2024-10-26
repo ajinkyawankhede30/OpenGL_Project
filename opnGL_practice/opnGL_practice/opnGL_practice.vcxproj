@@ -19,15 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ReadShader.cpp" />
+    <ClCompile Include="src\Shaders.cpp" />
     <ClCompile Include="src\stb_image\stb_image.cpp" />
     <ClCompile Include="src\Textures\Application.cpp" />
     <ClCompile Include="src\Textures\Textures.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hdr\ReadShader.h" />
+    <ClInclude Include="hdr\Shaders.h" />
     <ClInclude Include="hdr\Textures.h" />
     <ClInclude Include="src\stb_image\stb_image.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\Shader_main.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
