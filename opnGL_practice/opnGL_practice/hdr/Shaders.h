@@ -8,6 +8,9 @@
 
 #include "GL/glew.h"
 #include "glfw3.h"
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
 
 struct ShaderProgramSource {
 
@@ -29,7 +32,8 @@ public:
 	int GetUniformLocation(const std::string& name);
 	void SetUniform4f(const std::string& name, float f1, float f2, float f3, float f4);
 	void SetUniform1i(const std::string& name, int value);
-	
+	void SetUniformMat4f(const std::string& name, const glm::mat4& value);
+
 private:
 	ShaderProgramSource ParseShader(const char* filepath);
 	unsigned int CompileShader(unsigned int type, const std::string& source);

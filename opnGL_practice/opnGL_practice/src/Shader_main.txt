@@ -8,9 +8,11 @@ layout(location = 2) in vec2 textCoord;
 out vec3 out_colors;
 out vec2 Text_Coord;
 
+uniform mat4 u_transform;
+
 void main()
 {
-	gl_Position = positions;
+	gl_Position = u_transform * positions;
 	out_colors = vertex_colors;
 	Text_Coord = textCoord;
 };

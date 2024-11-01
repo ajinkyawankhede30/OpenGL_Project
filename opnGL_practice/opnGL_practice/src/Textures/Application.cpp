@@ -8,6 +8,17 @@
 #include "Shaders.h"
 #include  "Textures.h"
 
+//glm includes
+#include "glm/glm.hpp"
+#include "glm/vec4.hpp"
+#include "glm/vec3.hpp"
+#include "glm/vec2.hpp"
+#include "glm/mat4x4.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
+
+using namespace glm;
+
 #define ASSERT(x) if(!x) __debugbreak();
 #define CallLog(x) GLClearError();\
 	x;\
@@ -117,6 +128,14 @@ int main()
 	Textures my_texture("resources\\download.png");
 	my_texture.Bind();
 	myshader.SetUniform1i("ourTexture", 0);
+/*
+	glm::vec4 vector(1.0f, 0.0f, 0.0f, 1.0f);
+	glm::mat4 trans = glm::mat4(1.0f); //identity matrix
+	trans = glm::translate(trans, glm::vec3(1.0f, 1.0f, 0.0f));
+
+	vector = trans * vector;
+	std::cout << vector.x << vector.y << vector.z << "\n";
+*/
 
 	glBindVertexArray(0);
 	//glUseProgram(0);
@@ -124,12 +143,34 @@ int main()
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
+	float move_x = 1.5f;
+	float dx = 0.01f;
+
 	while (!glfwWindowShouldClose(window))
 	{
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		my_texture.Bind();
+
+		glm::mat4 transform = glm::mat4(1.0f);
+		//scale
+		transform = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f));
+		//translate
+		transform = glm::translate(transform, glm::vec3(move_x, -0.5f, 0.0f));
+		//rotate
+		transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+		
+		if (move_x > 1.5f)
+			dx = -0.01f;
+		else if (move_x < -1.5f)
+			dx = 0.01f;
+
+		move_x += dx;
+
+		//set uniform value in shader
+		myshader.SetUniformMat4f("u_transform", transform);
+
 		myshader.Bind();
 		//glUseProgram(program);
 
