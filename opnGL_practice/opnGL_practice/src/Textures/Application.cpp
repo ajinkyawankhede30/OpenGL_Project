@@ -16,6 +16,7 @@
 #include "glm/mat4x4.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
+#define OBJECT_02
 
 using namespace glm;
 
@@ -178,6 +179,17 @@ int main()
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+
+#ifdef OBJECT_02
+		transform = glm::mat4(1.0f);
+		float scale_amount = static_cast<float> (sin(glfwGetTime()));
+		transform = glm::scale(transform, glm::vec3(scale_amount));
+		transform = glm::translate(transform, glm::vec3(-1.5f, 0.5f, 0.0f));
+		myshader.SetUniformMat4f("u_transform", transform);
+		myshader.Bind();
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+
+#endif // OBJECT_02
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
