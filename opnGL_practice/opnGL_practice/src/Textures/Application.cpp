@@ -8,6 +8,9 @@
 #include "Shaders.h"
 #include  "Textures.h"
 
+#ifndef GLM_HEADERS
+#define GLM_HEADERS 
+
 //glm includes
 #include "glm/glm.hpp"
 #include "glm/vec4.hpp"
@@ -15,6 +18,8 @@
 #include "glm/vec2.hpp"
 #include "glm/mat4x4.hpp"
 #include "glm/gtc/matrix_transform.hpp"
+
+#endif // !GLM_HEADERS
 
 #define OBJECT_02
 
