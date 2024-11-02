@@ -3,7 +3,12 @@
 ################################################################################
 
 /opnGL_practice/.vs/opnGL_practice/v16
-/opnGL_practice/opnGL_practice/x64/...
-/opnGL_practice/opnGL_practice/Debug/...
-/opnGL_practice/x64/...
+/opnGL_practice/opnGL_practice/x64/
+/opnGL_practice/opnGL_practice/Debug/
+/opnGL_practice/x64/
+*.obj
+*.log
+*.idb
+*.pdb
+*.tlog
 
