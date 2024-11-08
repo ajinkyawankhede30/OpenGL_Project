@@ -21,7 +21,7 @@
 
 #endif // !GLM_HEADERS
 
-#define OBJECT_02
+//#define OBJECT_02
 
 using namespace glm;
 
@@ -45,6 +45,8 @@ static bool GLLogCall(const char* function, const char* file, int line)
 	return true;
 }
 
+const unsigned int WIN_WIDTH = 960;
+const unsigned int WIN_HEIGHT = 540;
 
 int main()
 {
@@ -59,7 +61,7 @@ int main()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	window = glfwCreateWindow(960, 540, "My_Game", NULL, NULL);
+	window = glfwCreateWindow(WIN_WIDTH, WIN_HEIGHT, "My_Game", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -88,8 +90,8 @@ int main()
 	{	//position	  color			     texture co-ord
 		-0.5f, -0.5f, 1.0f, 0.0f, 0.0f,	 0.0f, 0.0f, 	//0th index
 		 0.5,  -0.5f, 0.0f, 1.0f, 0.0f,  1.0f, 0.0f,		//1 
-		 0.5f, 0.5f,  0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,		//2
-		 -0.5f, 0.5f, 0.0f, 1.0f, 0.0f,  0.0f, 1.0f	   //3rd index
+		 0.5f,  0.5f, 0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,		//2
+		-0.5f,  0.5f, 0.0f, 1.0f, 0.0f,  0.0f, 1.0f	   //3rd index
 	};
 
 	unsigned int indices[] =
@@ -131,17 +133,9 @@ int main()
 	Shaders myshader("src\\Shader_main.txt");
 	myshader.Bind();
 
-	Textures my_texture("resources\\download.png");
+	Textures my_texture("resources\\wall2.jfif");
 	my_texture.Bind();
 	myshader.SetUniform1i("ourTexture", 0);
-/*
-	glm::vec4 vector(1.0f, 0.0f, 0.0f, 1.0f);
-	glm::mat4 trans = glm::mat4(1.0f); //identity matrix
-	trans = glm::translate(trans, glm::vec3(1.0f, 1.0f, 0.0f));
-
-	vector = trans * vector;
-	std::cout << vector.x << vector.y << vector.z << "\n";
-*/
 
 	glBindVertexArray(0);
 	//glUseProgram(0);
@@ -149,8 +143,6 @@ int main()
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-	float move_x = 1.5f;
-	float dx = 0.01f;
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -159,23 +151,21 @@ int main()
 
 		my_texture.Bind();
 
-		glm::mat4 transform = glm::mat4(1.0f);
-		//scale
-		transform = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f));
-		//translate
-		transform = glm::translate(transform, glm::vec3(move_x, -0.5f, 0.0f));
-		//rotate
-		transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
-		
-		if (move_x > 1.5f)
-			dx = -0.01f;
-		else if (move_x < -1.5f)
-			dx = 0.01f;
+		glm::mat4 model = glm::mat4(1.0f);
+		glm::mat4 view = glm::mat4(1.0f);
+		glm::mat4 projection = glm::mat4(1.0f);
 
-		move_x += dx;
+		//rotate along x-axis
+		model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+		//translate/ zoom out in +ve z-direction OR zoom-in in -ve direction
+		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+		//apply perspective
+		projection = glm::perspective(glm::radians(45.0f), (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 100.0f);
 
 		//set uniform value in shader
-		myshader.SetUniformMat4f("u_transform", transform);
+		myshader.SetUniformMat4f("model", model);
+		myshader.SetUniformMat4f("view", view);
+		myshader.SetUniformMat4f("projection", projection);
 
 		myshader.Bind();
 		//glUseProgram(program);
