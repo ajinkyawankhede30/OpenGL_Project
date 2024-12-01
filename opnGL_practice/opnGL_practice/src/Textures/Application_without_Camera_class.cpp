@@ -10,9 +10,7 @@
 #include "VertexBufferLayout.h"
 #include "IndexBuffClass.h"
 #include "Shaders.h"
-#include "Textures.h"
-#include "Camera.h"
-
+#include  "Textures.h"
 
 #ifndef GLM_HEADERS
 #define GLM_HEADERS 
@@ -32,7 +30,6 @@
 #define WASD_INPUT
 
 using namespace glm;
-
 
 #define ASSERT(x) if(!x) __debugbreak();
 #define CallLog(x) GLClearError();\
@@ -54,29 +51,17 @@ static bool GLLogCall(const char* function, const char* file, int line)
 	return true;
 }
 
-//global variables
 const unsigned int WIN_WIDTH = 960;
 const unsigned int WIN_HEIGHT = 540;
 
-camera::Camera fly_camera(glm::vec3(0.0f, 0.0f, 3.0f));
-//glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
-//glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-//glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
-
-
-bool firstMouse = true;
-//float yaw = -90.0f; // yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
-//float pitch = 0.0f;
-float lastX = static_cast<float>(WIN_WIDTH / 2.0f);
-float lastY = static_cast<float>(WIN_HEIGHT / 2.0f);
-//float fov = 45.0f;
+//global variables
+glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
 float deltaTime = 0.0f;
 float lastframe = 0.0f;
 
-//declaration
-void mouse_callback(GLFWwindow* window, double xpos, double ypos);
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void processInputs(GLFWwindow* window);
 
 int main()
@@ -100,11 +85,6 @@ int main()
 	}
 
 	glfwMakeContextCurrent(window);
-	glfwSetCursorPosCallback(window, mouse_callback);
-	glfwSetScrollCallback(window, scroll_callback);
-
-	// tell GLFW to capture our mouse
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	glfwSwapInterval(1);
 
@@ -156,7 +136,7 @@ int main()
 		-0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
 
 	};
-	
+
 	unsigned int indices[] =
 	{
 		0,1,2,
@@ -201,7 +181,7 @@ int main()
 	//Index buffer object
 	IndexBuffer ibo(indices, 36);
 
-	
+
 	Shaders myshader("src\\Shader_main.txt");
 	myshader.Bind();
 
@@ -215,7 +195,7 @@ int main()
 	ibo.Unbind();
 
 
-	glm::vec3 cubePositions[] = 
+	glm::vec3 cubePositions[] =
 	{
 		glm::vec3(0.0f,  0.0f,  0.0f),
 		glm::vec3(2.0f,  5.0f, -5.5f),
@@ -230,17 +210,17 @@ int main()
 	};
 
 	//apply perspective
-	//glm::mat4 projection = glm::mat4(1.0f);
-	//projection = glm::perspective(glm::radians(fov), (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 100.0f);
-	//projection = glm::perspective(glm::radians(45.0f), (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 100.0f);
+	glm::mat4 projection = glm::mat4(1.0f);
+	projection = glm::perspective(glm::radians(45.0f), (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 100.0f);
 
 
 	while (!glfwWindowShouldClose(window))
 	{
-		glClearColor(0.2f, 0.3f, 0.8f, 1.0f);
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		my_texture.Bind();
+
 #ifdef WASD_INPUT
 		{
 
@@ -250,14 +230,8 @@ int main()
 
 			processInputs(window);
 
-			//glm::mat4 view = glm::lookAt(cameraPos, (cameraPos + cameraFront), cameraUp);
-			glm::mat4 view = fly_camera.GetViewMatrix();
-			//glm::mat4 view = fly_camera.GetViewMatrix(fly_camera.Position, fly_camera.Front, fly_camera.WorldUp);
+			glm::mat4 view = glm::lookAt(cameraPos, (cameraPos + cameraFront), cameraUp);
 			myshader.SetUniformMat4f("view", view);
-
-			glm::mat4 projection = glm::mat4(1.0f);
-			//projection = glm::perspective(glm::radians(fov), (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 100.0f);
-			projection = glm::perspective(glm::radians(fly_camera.Zoom), (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 100.0f);
 			myshader.SetUniformMat4f("projection", projection);
 
 			vao.Bind();
@@ -267,14 +241,14 @@ int main()
 			{
 				glm::mat4 model = glm::mat4(1.0f);
 				model = glm::translate(model, cubePositions[i]);
-				//model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));
+				model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));
 				myshader.SetUniformMat4f("model", model);
 				myshader.Bind();
 				ibo.Bind();
 				glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
 			}
 		}
-#endif //WASD_INPUT
+#endif // WASD_INPUT
 
 #ifdef CAMERA_ROTATION
 
@@ -347,6 +321,7 @@ int main()
 	glfwTerminate();
 	return 0;
 }
+
 #ifdef WASD_INPUT
 void processInputs(GLFWwindow* window)
 {
@@ -355,69 +330,16 @@ void processInputs(GLFWwindow* window)
 		glfwSetWindowShouldClose(window, true);
 	}
 
-	//float cameraSpeed = static_cast<float>(2.5f * deltaTime);
-
+	float cameraSpeed = static_cast<float>(2.5f * deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-		fly_camera.ProcessKeyboard(camera::Camera_Movement::FORWARD, deltaTime);
+		cameraPos += cameraSpeed * cameraFront;
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-		fly_camera.ProcessKeyboard(camera::Camera_Movement::BACKWARD, deltaTime);
+		cameraPos -= cameraSpeed * cameraFront;
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-		fly_camera.ProcessKeyboard(camera::Camera_Movement::LEFT, deltaTime);
+		cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		fly_camera.ProcessKeyboard(camera::Camera_Movement::RIGHT, deltaTime);
+		cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
 
 }
 
-void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
-{
-	float xPos = static_cast<float>(xposIn);
-	float yPos = static_cast<float>(yposIn);
-
-
-	if (firstMouse)
-	{
-		lastX = xPos;
-		lastY = yPos;
-		firstMouse = false;
-	}
-
-	float xoffset = xPos - lastX;
-	float yoffset = lastY - yPos; // reversed since y-coordinates go from bottom to top
-	lastX = xPos;
-	lastY = yPos;
-	
-	fly_camera.ProcessMouseMovement(xoffset, yoffset);
-
-	//float sensitivity = 0.1f;
-	//xoffset *= sensitivity;
-	//yoffset *= sensitivity;
-
-	//yaw += xoffset;
-	//pitch += yoffset;
-
-	// make sure that when pitch is out of bounds, screen doesn't get flipped
-	//if (pitch > 89.0f)
-	//	pitch = 89.0f;
-	//if (pitch < -89.0f)
-	//	pitch = -89.0f;
-
-	//glm::vec3 front;
-	//front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-	//front.y = sin(glm::radians(pitch));
-	//front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-	//cameraFront = glm::normalize(front);
-
-}
-
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
-{
-	fly_camera.ProcessMouseScroll(static_cast<float>(yoffset));
-
-	//fov -= (float)(yoffset);
-	//if (fov < 1.0f)
-	//	fov = 1.0f;
-	//if (fov > 45.0f)
-	//	fov = 45.0f;
-
-}
 #endif // WASD_INPUT
