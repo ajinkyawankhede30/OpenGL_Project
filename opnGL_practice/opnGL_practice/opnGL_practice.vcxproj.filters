@@ -77,5 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="src\Shader_main.txt" />
+    <Text Include="src\Light_Source_Shader.txt" />
   </ItemGroup>
 </Project>

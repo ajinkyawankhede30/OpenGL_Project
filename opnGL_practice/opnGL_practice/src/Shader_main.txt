@@ -1,14 +1,8 @@
 #shader vertex
 #version 430 core
 
-layout(location = 0) in vec4 positions;
-layout(location = 1) in vec3 vertex_colors;
-layout(location = 2) in vec2 textCoord;
+layout(location = 0) in vec3 positions;
 
-out vec3 out_colors;
-out vec2 Text_Coord;
-
-//uniform mat4 u_transform;
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
@@ -16,9 +10,8 @@ uniform mat4 projection;
 
 void main()
 {
-	gl_Position = projection * view * model * positions;
-	out_colors = vertex_colors;
-	Text_Coord = textCoord;
+	gl_Position = projection * view * model * vec4(positions, 1.0f);
+
 };
 
 
@@ -27,15 +20,11 @@ void main()
 #version 430 core
 
 out vec4 color;
-in vec3 out_colors;
-in vec2 Text_Coord;
+uniform vec4 objectColor;
+uniform vec4 lightColor;
 
-uniform sampler2D ourTexture;
 
 void main()
 {
-	//color = vec4(out_colors,1.0f);
-	color = texture(ourTexture, Text_Coord);	
-	//color = texture(ourTexture, Text_Coord) * vec4(out_colors,1.0f);	
-
+	color = vec4(lightColor * objectColor);
 };

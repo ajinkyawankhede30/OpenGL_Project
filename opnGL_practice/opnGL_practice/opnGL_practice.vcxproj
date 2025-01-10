@@ -42,6 +42,7 @@
     <ClInclude Include="src\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="src\Light_Source_Shader.txt" />
     <Text Include="src\Shader_main.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

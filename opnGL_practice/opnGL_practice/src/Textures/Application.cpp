@@ -125,35 +125,35 @@ int main()
 
 	float positions[] =
 	{	//vertices				//colors			//texture_coord
-		-0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-		 0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-
-		-0.5f, -0.5f, 0.5f,   1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-		 0.5f, -0.5f, 0.5f,   0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-		 0.5f,  0.5f, 0.5f,   0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-		-0.5f,  0.5f, 0.5f,   0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-
-		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-		-0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-
-		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-		 0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-		 0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-
-		-0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-		 0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-		 0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-		-0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-
-		-0.5f,  0.5f, -0.5f,  1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-		-0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
+		 0.5f, -0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
+		 0.5f,  0.5f, -0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
+		-0.5f,  0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
+							  //
+		-0.5f, -0.5f, 0.5f,   //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
+		 0.5f, -0.5f, 0.5f,   //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
+		 0.5f,  0.5f, 0.5f,   //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
+		-0.5f,  0.5f, 0.5f,   //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
+							  //
+		-0.5f,  0.5f,  0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
+		-0.5f,  0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
+		-0.5f, -0.5f, -0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
+							  //
+		 0.5f,  0.5f,  0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
+		 0.5f,  0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
+		 0.5f, -0.5f, -0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
+		 0.5f, -0.5f,  0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
+							  //
+		-0.5f, -0.5f, -0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
+		 0.5f, -0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
+		 0.5f, -0.5f,  0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
+							  //
+		-0.5f,  0.5f, -0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
+		 0.5f,  0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
+		-0.5f,  0.5f,  0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
 
 	};
 	
@@ -184,6 +184,7 @@ int main()
 
 	//Vertex Array object
 	VertexArray vao;
+	VertexArray light_vao;
 
 
 	//Vertex buffer object
@@ -192,55 +193,58 @@ int main()
 
 	VertexBufferLayout bff_layout;
 	bff_layout.Push<float>(3); //vertex position attribute
-	bff_layout.Push<float>(3); //colors attribute
-	bff_layout.Push<float>(2); //texture coord attribute
+	//bff_layout.Push<float>(3); //colors attribute
+	//bff_layout.Push<float>(2); //texture coord attribute
 
 	vao.AddBuffer(vbo, bff_layout);
 	vao.Bind();
-
+	
 	//Index buffer object
 	IndexBuffer ibo(indices, 36);
 
-	
 	Shaders myshader("src\\Shader_main.txt");
 	myshader.Bind();
 
-	Textures my_texture("resources\\wall2.jfif");
-	my_texture.Bind();
-	myshader.SetUniform1i("ourTexture", 0);
-
 	vao.Unbind();
 	myshader.UnBind();
+
+	light_vao.AddBuffer(vbo, bff_layout);
+	light_vao.Bind();
+	
+	Shaders light_shader("src\\Light_Source_Shader.txt");
+	light_shader.Bind();
+	
+	light_vao.Unbind();
+	light_shader.UnBind();
 	vbo.Unbind();
+
+	//Textures my_texture("resources\\wall2.jfif");
+	//my_texture.Bind();
+	//myshader.SetUniform1i("ourTexture", 0);
+
 	ibo.Unbind();
 
 
 	glm::vec3 cubePositions[] = 
 	{
 		glm::vec3(0.0f,  0.0f,  0.0f),
-		glm::vec3(2.0f,  5.0f, -5.5f),
-		glm::vec3(-1.5f, -2.2f, -2.5f),
-		glm::vec3(-3.8f, -2.0f, -5.3f),
-		glm::vec3(2.4f, -0.4f, -3.5f),
-		glm::vec3(-1.7f,  3.0f, -4.5f),
-		glm::vec3(1.3f, -2.0f, -2.5f),
-		glm::vec3(1.5f,  2.0f, -2.5f),
-		glm::vec3(1.5f,  0.2f, -1.5f),
-		glm::vec3(-1.3f,  1.0f, -1.5f)
+		glm::vec3(2.0f,  0.0f, -2.0f),
+
 	};
 
 	//apply perspective
 	//glm::mat4 projection = glm::mat4(1.0f);
 	//projection = glm::perspective(glm::radians(fov), (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 100.0f);
 	//projection = glm::perspective(glm::radians(45.0f), (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 100.0f);
-
+	
+	glm::vec3 lightPos(2.0f, 0.0f, -2.0f);
 
 	while (!glfwWindowShouldClose(window))
 	{
 		glClearColor(0.2f, 0.3f, 0.8f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		my_texture.Bind();
+		//my_texture.Bind();
 #ifdef WASD_INPUT
 		{
 
@@ -250,9 +254,7 @@ int main()
 
 			processInputs(window);
 
-			//glm::mat4 view = glm::lookAt(cameraPos, (cameraPos + cameraFront), cameraUp);
 			glm::mat4 view = fly_camera.GetViewMatrix();
-			//glm::mat4 view = fly_camera.GetViewMatrix(fly_camera.Position, fly_camera.Front, fly_camera.WorldUp);
 			myshader.SetUniformMat4f("view", view);
 
 			glm::mat4 projection = glm::mat4(1.0f);
@@ -260,19 +262,43 @@ int main()
 			projection = glm::perspective(glm::radians(fly_camera.Zoom), (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 100.0f);
 			myshader.SetUniformMat4f("projection", projection);
 
-			vao.Bind();
-			int len = sizeof(cubePositions) / sizeof(glm::vec3);
+			glm::mat4 model = glm::mat4(1.0f);
+			myshader.SetUniformMat4f("model", model);
 
-			for (unsigned int i = 0; i < len; i++)
-			{
-				glm::mat4 model = glm::mat4(1.0f);
-				model = glm::translate(model, cubePositions[i]);
-				//model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));
-				myshader.SetUniformMat4f("model", model);
-				myshader.Bind();
-				ibo.Bind();
-				glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
-			}
+			myshader.SetUniform4f("objectColor", 1.0f, 0.5f, 0.31f, 0.0f);
+			myshader.SetUniform4f("lightColor", 1.0f, 1.0f, 1.0f, 0.0f);
+
+			myshader.Bind();
+			vao.Bind();
+			//ibo.Bind();
+			//glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
+
+
+			light_shader.SetUniformMat4f("view", view);
+			light_shader.SetUniformMat4f("projection", projection);
+			model = glm::mat4(1.0f);
+			model = glm::translate(model, lightPos);
+			model = glm::scale(model, glm::vec3(0.2f));
+			light_shader.SetUniformMat4f("model", model);
+
+			light_shader.Bind();
+			light_vao.Bind();
+
+			ibo.Bind();
+			glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
+
+			//int len = sizeof(cubePositions) / sizeof(glm::vec3);
+			//
+			//for (unsigned int i = 0; i < len; i++)
+			//{
+			//	glm::mat4 model = glm::mat4(1.0f);
+			//	model = glm::translate(model, cubePositions[i]);
+			//	//model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));
+			//	myshader.SetUniformMat4f("model", model);
+			//	myshader.Bind();
+			//	ibo.Bind();
+			//	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
+			//}
 		}
 #endif //WASD_INPUT
 
