@@ -20,11 +20,11 @@ void main()
 #version 430 core
 
 out vec4 color;
-uniform vec4 objectColor;
-uniform vec4 lightColor;
+uniform vec3 objectColor;
+uniform vec3 lightColor;
 
 
 void main()
 {
-	color = vec4(lightColor * objectColor);
+	color = vec4(lightColor * objectColor, 1.0f);
 };

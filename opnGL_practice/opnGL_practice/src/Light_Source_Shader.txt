@@ -9,7 +9,7 @@ uniform mat4 projection;
 
 void main()
 {
-	gl_Position = model * view * projection * vec4(positions,1.0);
+	gl_Position = projection * view * model * vec4(positions,1.0);
 };
 
 
@@ -17,8 +17,9 @@ void main()
 #version 430 core
 
 out vec4 color;
+uniform vec3 lightColor;
 
 void main()
 {
-	color = vec4(1.0);
+	color = vec4(lightColor, 1.0);
 };

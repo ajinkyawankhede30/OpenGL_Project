@@ -182,14 +182,11 @@ int main()
 	CallLog(glEnable(GL_BLEND));
 	CallLog(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
-	//Vertex Array object
-	VertexArray vao;
-	VertexArray light_vao;
-
+	//Vertex Array objects
+	VertexArray vao, light_vao;
 
 	//Vertex buffer object
 	VertexBuffer vbo(positions, sizeof(positions));
-
 
 	VertexBufferLayout bff_layout;
 	bff_layout.Push<float>(3); //vertex position attribute
@@ -197,25 +194,18 @@ int main()
 	//bff_layout.Push<float>(2); //texture coord attribute
 
 	vao.AddBuffer(vbo, bff_layout);
-	vao.Bind();
+	vao.Unbind();
+	
+	light_vao.AddBuffer(vbo, bff_layout);
+	light_vao.Unbind();
 	
 	//Index buffer object
 	IndexBuffer ibo(indices, 36);
 
 	Shaders myshader("src\\Shader_main.txt");
-	myshader.Bind();
-
-	vao.Unbind();
-	myshader.UnBind();
-
-	light_vao.AddBuffer(vbo, bff_layout);
-	light_vao.Bind();
-	
 	Shaders light_shader("src\\Light_Source_Shader.txt");
-	light_shader.Bind();
-	
-	light_vao.Unbind();
-	light_shader.UnBind();
+
+
 	vbo.Unbind();
 
 	//Textures my_texture("resources\\wall2.jfif");
@@ -224,20 +214,8 @@ int main()
 
 	ibo.Unbind();
 
-
-	glm::vec3 cubePositions[] = 
-	{
-		glm::vec3(0.0f,  0.0f,  0.0f),
-		glm::vec3(2.0f,  0.0f, -2.0f),
-
-	};
-
-	//apply perspective
-	//glm::mat4 projection = glm::mat4(1.0f);
-	//projection = glm::perspective(glm::radians(fov), (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 100.0f);
-	//projection = glm::perspective(glm::radians(45.0f), (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 100.0f);
 	
-	glm::vec3 lightPos(2.0f, 0.0f, -2.0f);
+	glm::vec3 lightPos(2.0f, 0.0f, -1.0f);
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -254,51 +232,37 @@ int main()
 
 			processInputs(window);
 
-			glm::mat4 view = fly_camera.GetViewMatrix();
-			myshader.SetUniformMat4f("view", view);
-
-			glm::mat4 projection = glm::mat4(1.0f);
-			//projection = glm::perspective(glm::radians(fov), (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 100.0f);
-			projection = glm::perspective(glm::radians(fly_camera.Zoom), (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 100.0f);
-			myshader.SetUniformMat4f("projection", projection);
-
-			glm::mat4 model = glm::mat4(1.0f);
-			myshader.SetUniformMat4f("model", model);
-
-			myshader.SetUniform4f("objectColor", 1.0f, 0.5f, 0.31f, 0.0f);
-			myshader.SetUniform4f("lightColor", 1.0f, 1.0f, 1.0f, 0.0f);
-
 			myshader.Bind();
+
+			glm::mat4 view = fly_camera.GetViewMatrix();
+			glm::mat4 projection = glm::mat4(1.0f);
+			projection = glm::perspective(glm::radians(fly_camera.Zoom), (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 100.0f);
+			glm::mat4 model = glm::mat4(1.0f);
+
+			
+			myshader.SetUniformMat4f("view", view);
+			myshader.SetUniformMat4f("projection", projection);
+			myshader.SetUniformMat4f("model", model);
+			//myshader.SetUniformVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
+			myshader.SetUniformVec3("lightColor", glm::vec3(1.0f, 1.0f, (float)glm::sin(glfwGetTime())));
+			myshader.SetUniformVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f));
+
 			vao.Bind();
-			//ibo.Bind();
-			//glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
-
-
-			light_shader.SetUniformMat4f("view", view);
-			light_shader.SetUniformMat4f("projection", projection);
-			model = glm::mat4(1.0f);
-			model = glm::translate(model, lightPos);
-			model = glm::scale(model, glm::vec3(0.2f));
-			light_shader.SetUniformMat4f("model", model);
-
-			light_shader.Bind();
-			light_vao.Bind();
-
 			ibo.Bind();
 			glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
 
-			//int len = sizeof(cubePositions) / sizeof(glm::vec3);
-			//
-			//for (unsigned int i = 0; i < len; i++)
-			//{
-			//	glm::mat4 model = glm::mat4(1.0f);
-			//	model = glm::translate(model, cubePositions[i]);
-			//	//model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));
-			//	myshader.SetUniformMat4f("model", model);
-			//	myshader.Bind();
-			//	ibo.Bind();
-			//	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
-			//}
+			light_shader.Bind();
+			model = glm::translate(model, lightPos);
+			model = glm::scale(model, glm::vec3(0.5f));
+
+			light_shader.SetUniformMat4f("model", model);
+			light_shader.SetUniformMat4f("view", view);
+			light_shader.SetUniformMat4f("projection", projection);
+			light_shader.SetUniformVec3("lightColor", glm::vec3(1.0f, 1.0f, (float)glm::sin(glfwGetTime())));
+			light_vao.Bind();
+			ibo.Bind();
+			glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
+
 		}
 #endif //WASD_INPUT
 
