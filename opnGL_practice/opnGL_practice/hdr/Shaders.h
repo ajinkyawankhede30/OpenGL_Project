@@ -40,6 +40,7 @@ public:
 	void UnBind();
 	int GetUniformLocation(const std::string& name);
 	void SetUniform4f(const std::string& name, float f1, float f2, float f3, float f4);
+	void SetUniformVec3(const std::string& name, glm::vec3 val);
 	void SetUniform1i(const std::string& name, int value);
 	void SetUniformMat4f(const std::string& name, const glm::mat4& value);
 
