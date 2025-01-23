@@ -306,7 +306,8 @@ int main()
 	vao.Unbind();
 	light_vao.Unbind();
 
-	glm::vec3 lightPos(2.0f, 0.0f, -1.0f);
+
+	//glm::vec3 lightPos(2.0f, 0.0f, 1.5f);
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -319,6 +320,13 @@ int main()
 			float currentFrame = static_cast<float>(glfwGetTime());
 			deltaTime = currentFrame - lastframe;
 			lastframe = currentFrame;
+
+			float radius = 2.0f;
+			float camX = static_cast<float> (glm::sin(glfwGetTime()) * radius);
+			//float camY = static_cast<float> (glm::cos(glfwGetTime()) * radius);
+			float camZ = static_cast<float> (glm::cos(glfwGetTime()) * radius);
+
+			glm::vec3 lightPos(camX, 0.0f, camZ);
 
 			processInputs(window);
 
@@ -337,6 +345,7 @@ int main()
 			myshader.SetUniformVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
 			myshader.SetUniformVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f));
 			myshader.SetUniformVec3("lightPos", lightPos);
+			myshader.SetUniformVec3("viewPos", fly_camera.Position);
 
 			vao.Bind();
 			glDrawArrays(GL_TRIANGLES, 0, 36);
