@@ -123,60 +123,148 @@ int main()
 	//	-0.5f,  0.5f, 0.0f, 1.0f, 0.0f,  0.0f, 1.0f,//3rd index
 	//};
 
-	float positions[] =
-	{	//vertices				//colors			//texture_coord
-		-0.5f, -0.5f, -0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-		 0.5f, -0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-		 0.5f,  0.5f, -0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-		-0.5f,  0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-							  //
-		-0.5f, -0.5f, 0.5f,   //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-		 0.5f, -0.5f, 0.5f,   //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-		 0.5f,  0.5f, 0.5f,   //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-		-0.5f,  0.5f, 0.5f,   //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-							  //
-		-0.5f,  0.5f,  0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-		-0.5f,  0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-		-0.5f, -0.5f, -0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-		-0.5f, -0.5f,  0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-							  //
-		 0.5f,  0.5f,  0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-		 0.5f,  0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-		 0.5f, -0.5f, -0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-		 0.5f, -0.5f,  0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-							  //
-		-0.5f, -0.5f, -0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-		 0.5f, -0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-		 0.5f, -0.5f,  0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-		-0.5f, -0.5f,  0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-							  //
-		-0.5f,  0.5f, -0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-		 0.5f,  0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-		 0.5f,  0.5f,  0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-		-0.5f,  0.5f,  0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
+	//float positions[] =
+	//{	//vertices				//colors			//texture_coord
+	//	-0.5f, -0.5f, -0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
+	//	 0.5f, -0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
+	//	 0.5f,  0.5f, -0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
+	//	-0.5f,  0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
+	//						  //
+	//	-0.5f, -0.5f, 0.5f,   //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
+	//	 0.5f, -0.5f, 0.5f,   //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
+	//	 0.5f,  0.5f, 0.5f,   //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
+	//	-0.5f,  0.5f, 0.5f,   //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
+	//						  //
+	//	-0.5f,  0.5f,  0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
+	//	-0.5f,  0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
+	//	-0.5f, -0.5f, -0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
+	//	-0.5f, -0.5f,  0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
+	//						  //
+	//	 0.5f,  0.5f,  0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
+	//	 0.5f,  0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
+	//	 0.5f, -0.5f, -0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
+	//	 0.5f, -0.5f,  0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
+	//						  //
+	//	-0.5f, -0.5f, -0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
+	//	 0.5f, -0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
+	//	 0.5f, -0.5f,  0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
+	//	-0.5f, -0.5f,  0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
+	//						  //
+	//	-0.5f,  0.5f, -0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
+	//	 0.5f,  0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
+	//	 0.5f,  0.5f,  0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
+	//	-0.5f,  0.5f,  0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
 
-	};
+	//};
 	
-	unsigned int indices[] =
-	{
-		0,1,2,
-		2,3,0,
+	float vertices[] = {
+	-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+	 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+	 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+	 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+	-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+	-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 
-		4,5,6,
-		6,7,4,
+	-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+	 0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+	 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+	 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+	-0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+	-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
 
-		7,3,0,
-		0,4,7,
+	-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+	-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+	-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+	-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+	-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+	-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
 
-		6,2,1,
-		1,5,6,
+	 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+	 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+	 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+	 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+	 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+	 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
 
-		0,1,5,
-		5,4,0,
+	-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+	 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+	 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+	 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+	-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+	-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
 
-		3,2,6,
-		6,7,3
+	-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+	 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+	 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+	 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+	-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+	-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
 	};
+
+	float light_vertices[] = {
+		-0.5f, -0.5f, -0.5f, 
+		 0.5f, -0.5f, -0.5f, 
+		 0.5f,  0.5f, -0.5f, 
+		 0.5f,  0.5f, -0.5f, 
+		-0.5f,  0.5f, -0.5f, 
+		-0.5f, -0.5f, -0.5f, 
+		
+		-0.5f, -0.5f,  0.5f, 
+		 0.5f, -0.5f,  0.5f, 
+		 0.5f,  0.5f,  0.5f, 
+		 0.5f,  0.5f,  0.5f, 
+		-0.5f,  0.5f,  0.5f, 
+		-0.5f, -0.5f,  0.5f, 
+		
+		-0.5f,  0.5f,  0.5f, 
+		-0.5f,  0.5f, -0.5f, 
+		-0.5f, -0.5f, -0.5f, 
+		-0.5f, -0.5f, -0.5f, 
+		-0.5f, -0.5f,  0.5f, 
+		-0.5f,  0.5f,  0.5f, 
+		
+		 0.5f,  0.5f,  0.5f, 
+		 0.5f,  0.5f, -0.5f, 
+		 0.5f, -0.5f, -0.5f, 
+		 0.5f, -0.5f, -0.5f, 
+		 0.5f, -0.5f,  0.5f, 
+		 0.5f,  0.5f,  0.5f, 
+		
+		-0.5f, -0.5f, -0.5f, 
+		 0.5f, -0.5f, -0.5f, 
+		 0.5f, -0.5f,  0.5f, 
+		 0.5f, -0.5f,  0.5f, 
+		-0.5f, -0.5f,  0.5f, 
+		-0.5f, -0.5f, -0.5f, 
+		
+		-0.5f,  0.5f, -0.5f, 
+		 0.5f,  0.5f, -0.5f, 
+		 0.5f,  0.5f,  0.5f, 
+		 0.5f,  0.5f,  0.5f, 
+		-0.5f,  0.5f,  0.5f, 
+		-0.5f,  0.5f, -0.5f 
+	};
+
+	//unsigned int indices[] =
+	//{
+	//	0,1,2,
+	//	2,3,0,
+
+	//	4,5,6,
+	//	6,7,4,
+
+	//	7,3,0,
+	//	0,4,7,
+
+	//	6,2,1,
+	//	1,5,6,
+
+	//	0,1,5,
+	//	5,4,0,
+
+	//	3,2,6,
+	//	6,7,3
+	//};
 
 
 	CallLog(glEnable(GL_BLEND));
@@ -186,36 +274,40 @@ int main()
 	VertexArray vao, light_vao;
 
 	//Vertex buffer object
-	VertexBuffer vbo(positions, sizeof(positions));
+	VertexBuffer vbo(vertices, sizeof(vertices));
 
-	VertexBufferLayout bff_layout;
+	VertexBufferLayout bff_layout, layout2;
 	bff_layout.Push<float>(3); //vertex position attribute
+	bff_layout.Push<float>(3); //normal vector attribute
 	//bff_layout.Push<float>(3); //colors attribute
 	//bff_layout.Push<float>(2); //texture coord attribute
 
 	vao.AddBuffer(vbo, bff_layout);
-	vao.Unbind();
-	
-	light_vao.AddBuffer(vbo, bff_layout);
-	light_vao.Unbind();
+	vao.Bind();
+
+	VertexBuffer vbo2(light_vertices, sizeof(light_vertices));
+	layout2.Push<float>(3);
+
+	light_vao.AddBuffer(vbo2, layout2);
+	light_vao.Bind();
 	
 	//Index buffer object
-	IndexBuffer ibo(indices, 36);
+	//IndexBuffer ibo(indices, 36);
 
 	Shaders myshader("src\\Shader_main.txt");
 	Shaders light_shader("src\\Light_Source_Shader.txt");
 
-
-	vbo.Unbind();
-
+	
 	//Textures my_texture("resources\\wall2.jfif");
 	//my_texture.Bind();
 	//myshader.SetUniform1i("ourTexture", 0);
 
-	ibo.Unbind();
+	//ibo.Unbind();
+	vao.Unbind();
+	light_vao.Unbind();
 
-	
-	glm::vec3 lightPos(2.0f, 0.0f, -1.0f);
+
+	//glm::vec3 lightPos(2.0f, 0.0f, 1.5f);
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -225,10 +317,16 @@ int main()
 		//my_texture.Bind();
 #ifdef WASD_INPUT
 		{
-
 			float currentFrame = static_cast<float>(glfwGetTime());
 			deltaTime = currentFrame - lastframe;
 			lastframe = currentFrame;
+
+			float radius = 2.0f;
+			float camX = static_cast<float> (glm::sin(glfwGetTime()) * radius);
+			//float camY = static_cast<float> (glm::cos(glfwGetTime()) * radius);
+			float camZ = static_cast<float> (glm::cos(glfwGetTime()) * radius);
+
+			glm::vec3 lightPos(camX, 0.0f, camZ);
 
 			processInputs(window);
 
@@ -244,12 +342,14 @@ int main()
 			myshader.SetUniformMat4f("projection", projection);
 			myshader.SetUniformMat4f("model", model);
 			//myshader.SetUniformVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
-			myshader.SetUniformVec3("lightColor", glm::vec3(1.0f, 1.0f, (float)glm::sin(glfwGetTime())));
+			myshader.SetUniformVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
 			myshader.SetUniformVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f));
+			myshader.SetUniformVec3("lightPos", lightPos);
+			myshader.SetUniformVec3("viewPos", fly_camera.Position);
 
 			vao.Bind();
-			ibo.Bind();
-			glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+			//glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, (void*)0);
 
 			light_shader.Bind();
 			model = glm::translate(model, lightPos);
@@ -258,10 +358,10 @@ int main()
 			light_shader.SetUniformMat4f("model", model);
 			light_shader.SetUniformMat4f("view", view);
 			light_shader.SetUniformMat4f("projection", projection);
-			light_shader.SetUniformVec3("lightColor", glm::vec3(1.0f, 1.0f, (float)glm::sin(glfwGetTime())));
+			light_shader.SetUniformVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
 			light_vao.Bind();
-			ibo.Bind();
-			glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+			//glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, (void*)0);
 
 		}
 #endif //WASD_INPUT
@@ -329,10 +429,6 @@ int main()
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
-
-	//glDeleteVertexArrays(1, &vao);
-	//glDeleteBuffers(1, &buffer);
-	//glDeleteProgram(program);
 
 	glfwTerminate();
 	return 0;
