@@ -13,6 +13,14 @@
 #include "Textures.h"
 #include "Camera.h"
 
+#ifndef imGUI
+#define imGUI
+#include "imgui.h"
+#include "backends/imgui_impl_glfw.h"
+#include "backends/imgui_impl_opengl3.h"
+//#include "backends/imgui_impl_opengl3_loader.h"
+
+#endif // !imGUI
 
 #ifndef GLM_HEADERS
 #define GLM_HEADERS 
@@ -102,9 +110,10 @@ int main()
 	glfwMakeContextCurrent(window);
 	glfwSetCursorPosCallback(window, mouse_callback);
 	glfwSetScrollCallback(window, scroll_callback);
-
+	
 	// tell GLFW to capture our mouse
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
 	glfwSwapInterval(1);
 
@@ -306,8 +315,29 @@ int main()
 	vao.Unbind();
 	light_vao.Unbind();
 
-
 	//glm::vec3 lightPos(2.0f, 0.0f, 1.5f);
+
+	// Setup Dear ImGui context
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+
+	// Setup Dear ImGui style
+	ImGui::StyleColorsDark();
+	//ImGui::StyleColorsLight();
+
+	ImGui_ImplOpenGL3_Init();
+	// Setup Platform/Renderer backends
+	ImGui_ImplGlfw_InitForOpenGL(window, true);
+
+	// Our state
+	bool show_demo_window = true;
+	bool show_another_window = false;
+	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+
+	glm::vec3 modelPos(0.0f, 0.0f, 0.0f);
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -327,8 +357,19 @@ int main()
 			float camZ = static_cast<float> (glm::cos(glfwGetTime()) * radius);
 
 			glm::vec3 lightPos(camX, 0.0f, camZ);
+			//glm::vec3 lightPos(1.0f, 1.0f, 1.5f);
+			//glm::vec3 modelPos(0.0f, 0.0f, 0.0f);
 
 			processInputs(window);
+
+			// Start the Dear ImGui frame
+			ImGui_ImplOpenGL3_NewFrame();
+			ImGui_ImplGlfw_NewFrame();
+			ImGui::NewFrame();
+
+			// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
+			//if (show_demo_window)
+			//	ImGui::ShowDemoWindow(&show_demo_window);
 
 			myshader.Bind();
 
@@ -336,16 +377,48 @@ int main()
 			glm::mat4 projection = glm::mat4(1.0f);
 			projection = glm::perspective(glm::radians(fly_camera.Zoom), (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 100.0f);
 			glm::mat4 model = glm::mat4(1.0f);
-
+			model = glm::translate(model, modelPos);
 			
 			myshader.SetUniformMat4f("view", view);
 			myshader.SetUniformMat4f("projection", projection);
 			myshader.SetUniformMat4f("model", model);
 			//myshader.SetUniformVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
-			myshader.SetUniformVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
-			myshader.SetUniformVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f));
+			//myshader.SetUniformVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f));
+			//myshader.SetUniformVec3("objectColor", glm::vec3(0.92, 0.74, 0.06)); //yellow(gold)
+			myshader.SetUniformVec3("objectColor", glm::vec3(0.15, 0.76, 0.77)); //cyan
 			myshader.SetUniformVec3("lightPos", lightPos);
 			myshader.SetUniformVec3("viewPos", fly_camera.Position);
+
+			//material
+			//myshader.SetUniformVec3("material.ambient", glm::vec3(1.0f, 0.5f, 0.31f));
+			//myshader.SetUniformVec3("material.diffusion", glm::vec3(1.0f, 0.5f, 0.31f));
+			//myshader.SetUniformVec3("material.specular", glm::vec3(0.5f, 0.5f, 0.5f));
+			//myshader.SetUniform1f("material.shininess", 32.0f);
+			
+			//material : Gold
+			//myshader.SetUniformVec3("material.ambient", glm::vec3(0.24725,	0.1995,	0.0745));
+			//myshader.SetUniformVec3("material.diffusion", glm::vec3(0.75164,0.60648,0.22648));
+			//myshader.SetUniformVec3("material.specular", glm::vec3(0.628281,0.555802,0.366065));
+			//myshader.SetUniform1f("material.shininess", 0.4 * 128.0f);
+
+			//material : Cyan blue plastic
+			myshader.SetUniformVec3("material.ambient", glm::vec3(0.0,0.1,0.06));
+			myshader.SetUniformVec3("material.diffusion", glm::vec3(0.0,0.50980392,0.50980392));
+			myshader.SetUniformVec3("material.specular", glm::vec3(0.50196078,0.50196078,0.50196078));
+			myshader.SetUniform1f("material.shininess", 0.25 * 128.0f);
+
+
+			//light intensity
+			//myshader.SetUniformVec3("light.ambient", glm::vec3(0.2f));
+			//myshader.SetUniformVec3("light.diffusion", glm::vec3(0.5f));
+			//myshader.SetUniformVec3("light.specular", glm::vec3(1.0f));
+			//myshader.SetUniformVec3("light.position", lightPos);
+
+			//light intensity
+			myshader.SetUniformVec3("light.ambient", glm::vec3(1.0f));
+			myshader.SetUniformVec3("light.diffusion", glm::vec3(1.0f));
+			myshader.SetUniformVec3("light.specular", glm::vec3(1.0f));
+			myshader.SetUniformVec3("light.position", lightPos);
 
 			vao.Bind();
 			glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -360,8 +433,34 @@ int main()
 			light_shader.SetUniformMat4f("projection", projection);
 			light_shader.SetUniformVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
 			light_vao.Bind();
+
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 			//glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, (void*)0);
+
+			//2. ImGUI window
+			{
+
+				static float f = 0.0f;
+				static int counter = 0;
+
+				ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+
+				ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
+				ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
+				ImGui::Checkbox("Another Window", &show_another_window);
+				
+				ImGui::SliderFloat3("Object_Translation", &modelPos.x, 0.0f, 960.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+				ImGui::SliderFloat3("Light_Translation", &lightPos.x, 0.0f, 540.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+				ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
+
+				if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
+					counter++;
+				ImGui::SameLine();
+				ImGui::Text("counter = %d", counter);
+
+				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
+				ImGui::End();
+			}
 
 		}
 #endif //WASD_INPUT
@@ -426,9 +525,17 @@ int main()
 
 #endif // OBJECT_02
 
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
+
+	// Cleanup
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
 
 	glfwTerminate();
 	return 0;
