@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Textures\Application.cpp">
+    <ClCompile Include="src\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\stb_image\stb_image.cpp">
@@ -24,7 +24,7 @@
     <ClCompile Include="src\Shaders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Textures\Textures.cpp">
+    <ClCompile Include="src\Textures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\VertexArray.cpp">
@@ -126,5 +126,18 @@
   <ItemGroup>
     <Text Include="src\Shader_main.txt" />
     <Text Include="src\Light_Source_Shader.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\stb_image\container2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\container2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\container2.jfif" />
+    <Image Include="resources\container2_specular.jfif" />
+    <Image Include="resources\lighting_maps_specular_color.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

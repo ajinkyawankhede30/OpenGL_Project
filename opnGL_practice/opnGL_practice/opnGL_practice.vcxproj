@@ -31,8 +31,8 @@
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\Shaders.cpp" />
     <ClCompile Include="src\stb_image\stb_image.cpp" />
-    <ClCompile Include="src\Textures\Application.cpp" />
-    <ClCompile Include="src\Textures\Textures.cpp" />
+    <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\Textures.cpp" />
     <ClCompile Include="src\VertexArray.cpp" />
     <ClCompile Include="src\VertexBuffClass.cpp" />
   </ItemGroup>
@@ -60,6 +60,13 @@
   <ItemGroup>
     <Text Include="src\Light_Source_Shader.txt" />
     <Text Include="src\Shader_main.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\container2.jfif" />
+    <Image Include="resources\container2.png" />
+    <Image Include="resources\container2_specular.jfif" />
+    <Image Include="resources\lighting_maps_specular_color.png" />
+    <Image Include="src\stb_image\container2.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

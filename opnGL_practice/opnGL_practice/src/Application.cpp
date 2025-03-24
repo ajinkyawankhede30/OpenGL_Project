@@ -108,12 +108,12 @@ int main()
 	}
 
 	glfwMakeContextCurrent(window);
-	//glfwSetCursorPosCallback(window, mouse_callback);
+	glfwSetCursorPosCallback(window, mouse_callback);
 	glfwSetScrollCallback(window, scroll_callback);
 	
 	// tell GLFW to capture our mouse
-	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
 	glfwSwapInterval(1);
 
@@ -124,90 +124,49 @@ int main()
 
 	CallLog(glEnable(GL_DEPTH_TEST));
 
-	//float positions[] =
-	//{	//position	  color			     texture co-ord
-	//	-0.5f, -0.5f, 1.0f, 0.0f, 0.0f,	 0.0f, 0.0f, 	//0th index
-	//	 0.5,  -0.5f, 0.0f, 1.0f, 0.0f,  1.0f, 0.0f,		//1 
-	//	 0.5f,  0.5f, 0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,		//2
-	//	-0.5f,  0.5f, 0.0f, 1.0f, 0.0f,  0.0f, 1.0f,//3rd index
-	//};
-
-	//float positions[] =
-	//{	//vertices				//colors			//texture_coord
-	//	-0.5f, -0.5f, -0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-	//	 0.5f, -0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-	//	 0.5f,  0.5f, -0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-	//	-0.5f,  0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-	//						  //
-	//	-0.5f, -0.5f, 0.5f,   //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-	//	 0.5f, -0.5f, 0.5f,   //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-	//	 0.5f,  0.5f, 0.5f,   //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-	//	-0.5f,  0.5f, 0.5f,   //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-	//						  //
-	//	-0.5f,  0.5f,  0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-	//	-0.5f,  0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-	//	-0.5f, -0.5f, -0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-	//	-0.5f, -0.5f,  0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-	//						  //
-	//	 0.5f,  0.5f,  0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-	//	 0.5f,  0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-	//	 0.5f, -0.5f, -0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-	//	 0.5f, -0.5f,  0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-	//						  //
-	//	-0.5f, -0.5f, -0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-	//	 0.5f, -0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-	//	 0.5f, -0.5f,  0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-	//	-0.5f, -0.5f,  0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-	//						  //
-	//	-0.5f,  0.5f, -0.5f,  //1.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-	//	 0.5f,  0.5f, -0.5f,  //0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
-	//	 0.5f,  0.5f,  0.5f,  //0.0f, 0.0f, 1.0f,	 1.0f, 1.0f,
-	//	-0.5f,  0.5f,  0.5f,  //0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-
-	//};
-	
 	float vertices[] = {
-	-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-	 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-	 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		// positions          // normals           // texture coords
+		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
+		 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 0.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
 
-	-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 0.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 1.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 1.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 0.0f,
 
-	-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-	-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-	-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-	-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-	-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-	-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
+		-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
+		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
 
-	 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+		 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
 
-	-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-	 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-	 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 1.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 0.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
 
-	-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-	 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-	 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-	 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
+		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 1.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 0.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f
 	};
 
 	float light_vertices[] = {
@@ -289,7 +248,7 @@ int main()
 	bff_layout.Push<float>(3); //vertex position attribute
 	bff_layout.Push<float>(3); //normal vector attribute
 	//bff_layout.Push<float>(3); //colors attribute
-	//bff_layout.Push<float>(2); //texture coord attribute
+	bff_layout.Push<float>(2); //texture coord attribute
 
 	vao.AddBuffer(vbo, bff_layout);
 	vao.Bind();
@@ -307,8 +266,18 @@ int main()
 	Shaders light_shader("src\\Light_Source_Shader.txt");
 
 	
+	Textures my_texture("resources\\container2.jfif");
+	Textures my_texture2("resources\\container2_specular.jfif");
+	Textures my_texture3("resources\\matrix.jpg");
+
+	//Textures my_texture2("resources\\lighting_maps_specular_color.png");
+	my_texture.Bind();
+	my_texture2.Bind();
+	my_texture3.Bind();
+	myshader.SetUniform1i("material.diffuse", 0);
+	myshader.SetUniform1i("material.specular", 1);
+	myshader.SetUniform1i("material.emission", 2);
 	//Textures my_texture("resources\\wall2.jfif");
-	//my_texture.Bind();
 	//myshader.SetUniform1i("ourTexture", 0);
 
 	//ibo.Unbind();
@@ -332,20 +301,12 @@ int main()
 	// Setup Platform/Renderer backends
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 
-	// Our state
-	bool show_demo_window = true;
-	bool show_another_window = false;
-	bool b_gold = GL_FALSE;
-	bool b_cyan_plastic = GL_FALSE;
-	bool b_orange = GL_FALSE;
-	bool b_default_material = GL_TRUE;
-	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-
 	glm::vec3 modelPos(0.0f, 0.0f, 0.0f);
 
 	while (!glfwWindowShouldClose(window))
 	{
-		glClearColor(0.2f, 0.3f, 0.8f, 1.0f);
+		//glClearColor(0.2f, 0.3f, 0.8f, 1.0f);
+		glClearColor(0.5f, 0.5f, 0.5f, 0.5f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		//my_texture.Bind();
@@ -361,7 +322,7 @@ int main()
 			float camZ = static_cast<float> (glm::cos(glfwGetTime()) * radius);
 
 			glm::vec3 lightPos(camX, 0.0f, camZ);
-			//glm::vec3 lightPos(1.0f, 1.0f, 1.5f);
+			//glm::vec3 lightPos(1.0f, 0.0f, 1.5f);
 			//glm::vec3 modelPos(0.0f, 0.0f, 0.0f);
 
 			processInputs(window);
@@ -398,58 +359,39 @@ int main()
 			myshader.SetUniformVec3("viewPos", fly_camera.Position);
 
 			//material
-			if (b_default_material)
-			{
-				b_gold = GL_FALSE;
-				b_cyan_plastic = GL_FALSE;
-				myshader.SetUniformVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f));
-
-				myshader.SetUniformVec3("material.ambient", glm::vec3(1.0f, 0.5f, 0.31f));
-				myshader.SetUniformVec3("material.diffusion", glm::vec3(1.0f, 0.5f, 0.31f));
-				myshader.SetUniformVec3("material.specular", glm::vec3(0.5f, 0.5f, 0.5f));
-				myshader.SetUniform1f("material.shininess", 32.0f);
-			}
+			//myshader.SetUniformVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f));
+			//myshader.SetUniformVec3("material.ambient", glm::vec3(1.0f, 0.5f, 0.31f));
+			//myshader.SetUniformVec3("material.diffusion", glm::vec3(1.0f, 0.5f, 0.31f));
+			//myshader.SetUniformVec3("material.specular", glm::vec3(0.5f, 0.5f, 0.5f));
+			//myshader.SetUniform1i("material.diffuse", 0);
+			myshader.SetUniform1f("material.shininess", 64.0f);
 			
-			//material : Gold
-			if (b_gold)
-			{
-				b_default_material = GL_FALSE;
-				b_cyan_plastic = GL_FALSE;
-				myshader.SetUniformVec3("objectColor", glm::vec3(0.92, 0.74, 0.06)); //yellow(gold)
-
-				myshader.SetUniformVec3("material.ambient", glm::vec3(0.24725, 0.1995, 0.0745));
-				myshader.SetUniformVec3("material.diffusion", glm::vec3(0.75164, 0.60648, 0.22648));
-				myshader.SetUniformVec3("material.specular", glm::vec3(0.628281, 0.555802, 0.366065));
-				myshader.SetUniform1f("material.shininess", 0.4f * 128.0f);
-			}
-
-			//material : Cyan blue plastic
-			if (b_cyan_plastic)
-			{
-				b_gold = GL_FALSE;
-				b_default_material = GL_FALSE;
-				myshader.SetUniformVec3("objectColor", glm::vec3(0.15, 0.76, 0.77)); //cyan
-
-				myshader.SetUniformVec3("material.ambient", glm::vec3(0.0, 0.1, 0.06));
-				myshader.SetUniformVec3("material.diffusion", glm::vec3(0.0, 0.50980392, 0.50980392));
-				myshader.SetUniformVec3("material.specular", glm::vec3(0.50196078, 0.50196078, 0.50196078));
-				myshader.SetUniform1f("material.shininess", 0.25 * 128.0f);
-			}
+			float time = static_cast<float>(glfwGetTime());
+			myshader.SetUniform1f("time", time);
 
 
 			//light intensity
-			//myshader.SetUniformVec3("light.ambient", glm::vec3(0.2f));
-			//myshader.SetUniformVec3("light.diffusion", glm::vec3(0.5f));
-			//myshader.SetUniformVec3("light.specular", glm::vec3(1.0f));
-			//myshader.SetUniformVec3("light.position", lightPos);
-
-			//light intensity
-			myshader.SetUniformVec3("light.ambient", glm::vec3(1.0f));
-			myshader.SetUniformVec3("light.diffusion", glm::vec3(1.0f));
+			myshader.SetUniformVec3("light.ambient", glm::vec3(0.2f));
+			myshader.SetUniformVec3("light.diffusion", glm::vec3(0.5f));
 			myshader.SetUniformVec3("light.specular", glm::vec3(1.0f));
 			myshader.SetUniformVec3("light.position", lightPos);
 
+			//light intensity
+			//myshader.SetUniformVec3("light.ambient", glm::vec3(1.0f));
+			//myshader.SetUniformVec3("light.diffusion", glm::vec3(1.0f));
+			//myshader.SetUniformVec3("light.specular", glm::vec3(1.0f));
+			//myshader.SetUniformVec3("light.position", lightPos);
+
 			vao.Bind();
+			glActiveTexture(GL_TEXTURE0);
+			my_texture.Bind();
+
+			glActiveTexture(GL_TEXTURE1);
+			my_texture2.Bind();
+
+			glActiveTexture(GL_TEXTURE2);
+			my_texture3.Bind();
+
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 			//glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, (void*)0);
 
@@ -467,50 +409,7 @@ int main()
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 			//glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, (void*)0);
 
-			//2. ImGUI window
-			//{
-			//	static float f = 0.0f;
-			//	static int counter = 0;
 
-			//	ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
-
-			//	ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
-			//	ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
-			//	ImGui::Checkbox("Another Window", &show_another_window);
-			//	
-			//	ImGui::SliderFloat3("Object_Translation", &modelPos.x, 0.0f, 960.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-			//	ImGui::SliderFloat3("Light_Translation", &lightPos.x, 0.0f, 540.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-			//	ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
-
-			//	if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
-			//		counter++;
-			//	ImGui::SameLine();
-			//	ImGui::Text("counter = %d", counter);
-
-			//	ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
-			//	ImGui::End();
-			//}
-
-			{
-				ImGui::Begin("ImGUI Window");
-				ImGui::Text("Select Material");
-				ImGui::Checkbox("Default", &b_default_material);
-				ImGui::Checkbox("Gold", &b_gold);
-				ImGui::Checkbox("Cyan Plastic", &b_cyan_plastic);
-				ImGui::NewLine();
-				ImGui::Text("Move Object");
-				//float velocity = fly_camera.MovementSpeed * deltaTime;
-				//fly_camera.Position.x += fly_camera.Front.x * velocity;
-				//fly_camera.Position.y += fly_camera.Front.y * velocity;
-				////fly_camera.Position.z -= fly_camera.Front.z * velocity;
-				//ImGui::SliderFloat("X_Dir", &fly_camera.Position.x, -1.0, 1.0f);
-				//ImGui::SliderFloat("Y_Dir", &fly_camera.Position.y, -5.0f, 5.0f);
-				//ImGui::SliderFloat("Z_Dir", &fly_camera.Position.z, 3.0f, 20.0f);
-
-				ImGui::SliderFloat3("Object Translation", &modelPos.x, -1.0f, 1.0f);
-
-				ImGui::End();
-			}
 
 		}
 #endif //WASD_INPUT
